@@ -6,7 +6,7 @@ FSJS project 2 - List Filter and Pagination
 var students = document.getElementsByClassName("student-item cf");    // selects all the students in the list
 
   const showPage = (page) => {
-    for(i=0,i<students.length,i+=1){
+    for(i=0;i<students.length;i+=1){
       students[i].style.display = "none";                            // hides all student list elements
     }
     var startIndex = (page * 10) - 10;                              // gets the starting index of the students on the specified page
@@ -23,12 +23,13 @@ var students = document.getElementsByClassName("student-item cf");    // selects
     div.className = "pagination";                               // gives this new div the class 'pagination'
     var ul = document.createElement("UL");                      // put a ul element on our new div
     for(i=1;i<=listLength;i+=1){
-      var a = ul.createElement("A");
+      var a = document.createElement("A");
+      ul.appendChild(a);
       a.href = "#";
       a.innerHTML = i;
     }
     div.appendChild(ul);
-    mainDiv.appendChild(div);                                  // puts the specified amount of li elements needed with accompanying a tags
+    mainDiv[0].appendChild(div);                                  // puts the specified amount of li elements needed with accompanying a tags
     var a = document.querySelectorAll(a[href='#']);            // selects the anchors of all li tags b/c you cant use the same variable inside of the function because of its scope
     a[0].className = "active";                                 // gives the class of active to the first anchor tag
     a.addEventListener('click', ()=>{
