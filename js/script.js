@@ -20,8 +20,8 @@ var students = document.getElementsByClassName("student-item cf");    // selects
     var listLength = Math.ceil(list.length / 10);                 // gets the amount of pages needed for the specified student list
     var mainDiv = document.getElementsByClassName("page");        // gets the main div that we will put our new div on
     var div = document.createElement("DIV");                     // put our new div on the main div
-    div.className = "pagination";                               // gives this new div the class 'pagination'
-    var ul = document.createElement("UL");                      // put a ul element on our new div
+    div.className = "pagination";                                // gives this new div the class 'pagination'
+    var ul = document.createElement("UL");                       // put a ul element on our new div
     for(i=1;i<=listLength;i+=1){
       var a = document.createElement("A");
       ul.appendChild(a);
@@ -30,13 +30,16 @@ var students = document.getElementsByClassName("student-item cf");    // selects
     }
     div.appendChild(ul);
     mainDiv[0].appendChild(div);                                  // puts the specified amount of li elements needed with accompanying a tags
-    var a = document.querySelectorAll(a[href='#']);            // selects the anchors of all li tags b/c you cant use the same variable inside of the function because of its scope
+    var a = document.querySelectorAll("a[href='#']");            // selects the anchors of all li tags b/c you cant use the same variable inside of the function because of its scope
     a[0].className = "active";                                 // gives the class of active to the first anchor tag
-    a.addEventListener('click', ()=>{
-      a.className = "";                                        // gets rid of all exisiting active tags on the anchors
-      a.target.className = "active";  Math.ceil()              // gives the class of active to the anchor that was clicked
-      showPage(a.target.innerHTML);                            // shows the page of the anchor tag clicked with the correct page #
-    });
+    for(i=0;i<listLength;i+=1){
+      a[i].addEventListener('click', ()=>{
+        var active = document.getElementsByClassName("active");
+        active[0].classList.remove("active");                                        // gets rid of all exisiting active tags on the anchors
+        this.className = "active";  Math.ceil()              // gives the class of active to the anchor that was clicked
+        showPage(this.innerHTML);                            // shows the page of the anchor tag clicked with the correct page #
+      });
+    }
   }
 
 showPage(1);                                                   // shows the first page of students
